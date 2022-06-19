@@ -1,8 +1,10 @@
 
 const container= document.querySelector('.container');
+
 const buttons = document.createElement('div');
 buttons.className = 'buttons';
 container.appendChild(buttons);
+
 const gridContainer = document.createElement('div');
 gridContainer.className='gridContainer';
 container.appendChild(gridContainer);
@@ -12,32 +14,44 @@ const clear = document.createElement('button');
 clear.className= 'clear';
 clear.textContent = 'Clear';
 buttons.appendChild(clear);
-const color = document.createElement('button')
-color.className = 'colorPalat';
-color.textContent = 'Color'
-buttons.appendChild(color);
+
 const reverse = document.createElement('button');
 reverse.className= 'reverse';
 reverse.textContent = 'Revese';
 buttons.appendChild(reverse);
 
-function creatCells(gridnum=16) {
-   gridContainer.style.gridTemplateRows= `repeat(${gridnum},1fr)`;
-   gridContainer.style.gridTemplateColumns= `repeat(${gridnum},1fr)`;
-    for (let i = 0; i < gridnum*gridnum; i++) {
+//functions
+function creatCells(userInput=16) {
+   
+     userInput = prompt('please write number between 16 - 64', '16')
+    while (userInput > 64 || userInput < 16){
+    alert ('please choose a number between 16 - 64')
+    userInput = prompt('please write number between 16 - 64', '16')
+    }
+   gridContainer.style.gridTemplateRows= `repeat(${userInput},1fr)`;
+   gridContainer.style.gridTemplateColumns= `repeat(${userInput},1fr)`;
+    for (let i = 0; i < userInput*userInput; i++) {
         let gridCells = document.createElement('div')
         gridCells.className='gridCells'
         gridContainer.appendChild(gridCells)
-        
+         }
     }
-    }
+  
 creatCells()
+
 clear.addEventListener('click',clearSketch)
 function clearSketch() {
-    pixels.forEach(pixel => pixel.classList.remove('colored'))
-}
- 
-const pixels = document.querySelectorAll('.gridCells')
+        pixels.forEach(pixel => pixel.classList.remove('colored'))
+    }
+reverse.addEventListener('click', reversecolor)
+function reversecolor() {
+        pixels.forEach(pixel => {
+            (pixel.className.includes('colored'))? pixel.classList.remove('colored')
+            :pixel.classList.add('colored')
+        })
+    }
+
+const pixels = document.querySelectorAll('.gridCells');
 pixels.forEach(pixel => pixel.addEventListener('mouseover' , (e) => {
    
     e.target.classList.add('colored')
