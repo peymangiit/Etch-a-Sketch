@@ -23,10 +23,10 @@ buttons.appendChild(reverse);
 //functions
 function creatCells(userInput=16) {
    
-     userInput = prompt('please write number between 16 - 64', '16')
-    while (userInput > 64 || userInput < 16){
-    alert ('please choose a number between 16 - 64')
-    userInput = prompt('please write number between 16 - 64', '16')
+     userInput = prompt('please write number between 16 - 90', '16')
+    while (userInput > 90 || userInput < 16){
+    alert ('please choose a number between 16 - 90')
+    userInput = prompt('please write number between 16 - 90', '16')
     }
    gridContainer.style.gridTemplateRows= `repeat(${userInput},1fr)`;
    gridContainer.style.gridTemplateColumns= `repeat(${userInput},1fr)`;
